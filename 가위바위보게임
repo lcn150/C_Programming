@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+//가위바위보 게임
+int main(void) {
+	int com, usr, draw, win;
+
+	srand(time(NULL));   
+
+	win = 0;
+	draw = 0;
+	while (1) {
+		com = rand() % (3 - 1) + 1;  //컴퓨터의 랜덤값 생성
+		printf("바위: 1, 가위: 2, 보: 3: ");
+		scanf("%d", &usr);
+
+		if (com == 1) {   //컴퓨터는 바위
+			if (usr == 1) {   //비겼을 때
+				printf("당신은 바위 선택, 컴퓨터는 바위 선택, 비겼습니다! \n");
+				draw++;
+			}
+			else if (usr == 2) {   //졌을 때
+				printf("당신은 가위 선택, 컴퓨터는 바위 선택, 졌습니다!\n");
+				break;   //지면 끝 
+			}
+			else {   //이겼을 때
+				printf("당신은 보를 선택, 컴퓨터는 바위 선택, 이겼습니다! \n");
+				win++;
+			}
+		}
+
+		else if (com == 2) {   //컴퓨터는 가위
+			if (usr == 1) {
+				printf("당신은 바위 선택, 컴퓨터는 가위 선택, 이겼습니다! \n");
+				win++;
+			}
+			else if (usr == 2) {
+				printf("당신은 가위 선택, 컴퓨터는 가위 선택, 비겼습니다! \n");
+				draw++;
+			}
+			else {
+				printf("당신은 보 선택, 컴퓨터는 가위 선택, 졌습니다! \n");
+				break;  //지면 끝
+			}
+		}
+
+		else {    //컴퓨터는 보
+			if (usr == 1) {
+				printf("당신은 바위 선택, 컴퓨터는 보 선택, 졌습니다!\n");
+				break;  //지면 끝 
+			}
+			else if (usr == 2) {
+				printf("당신은 가위 선택, 컴퓨터는 보 선택, 이겼습니다! \n");
+				win++;
+			}
+			else {
+				printf("당신은 보 선택, 컴퓨터는 보 선택, 비겼습니다! \n");
+				draw++;
+			}
+		}
+	}
+	printf("\n");
+	printf("게임의 결과 : %d승 %d무 \n", win, draw);
+}
